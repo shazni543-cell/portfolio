@@ -3,119 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Coast | Poster Boutique</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+    <title>Neon Bikini Poster Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #020205;
-            --neon-pink: #ff00ff;
-            --neon-blue: #00d2ff;
-            --card-bg: #11111a;
+            --bg: #050505;
+            --neon: #00f2ff;
+            --pink: #ff007f;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg); color: white; font-family: 'Rajdhani', sans-serif; }
 
         /* Navigation */
-        nav { display: flex; justify-content: space-between; padding: 30px 10%; align-items: center; border-bottom: 1px solid #222; }
-        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
+        nav { padding: 30px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1a1a1a; }
+        .logo { font-family: 'Syncopate', sans-serif; color: var(--neon); text-shadow: 0 0 10px var(--neon); font-size: 1.2rem; }
 
-        /* Shop Grid */
-        .shop-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding: 60px 10%; }
-
-        .poster-card { 
-            background: var(--card-bg); 
-            border-radius: 15px; 
-            padding: 15px; 
-            border: 1px solid #333; 
-            transition: 0.3s;
-            position: relative;
+        /* Bento Grid Layout */
+        .showcase { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            grid-template-rows: repeat(2, 400px); 
+            gap: 20px; 
+            padding: 40px 5%; 
         }
 
-        .poster-card:hover { 
-            border-color: var(--neon-pink); 
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
-            transform: translateY(-5px);
+        .poster-item { 
+            position: relative; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            border: 1px solid #222;
+            background: var(--glass);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .img-container { width: 100%; height: 400px; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
-        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+        /* Unique Grid Sizes for an "Amazing" Look */
+        .large { grid-column: span 2; grid-row: span 2; }
+        .wide { grid-column: span 2; }
 
-        .details { display: flex; justify-content: space-between; align-items: center; }
-        .price { color: var(--neon-blue); font-weight: bold; font-size: 1.4rem; }
-        
-        .buy-btn { 
-            background: transparent; 
-            border: 1px solid var(--neon-pink); 
-            color: var(--neon-pink); 
-            padding: 8px 20px; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            font-weight: bold;
-            transition: 0.3s;
+        .poster-item img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.8s; opacity: 0.8;
         }
 
-        .buy-btn:hover { background: var(--neon-pink); color: white; box-shadow: 0 0 15px var(--neon-pink); }
+        .poster-item:hover { border-color: var(--pink); box-shadow: 0 0 30px rgba(255, 0, 127, 0.3); }
+        .poster-item:hover img { transform: scale(1.1); opacity: 1; }
 
-        /* Poster Glow Effect */
-        .glow-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+        /* Price Tags */
+        .tag { 
+            position: absolute; bottom: 20px; left: 20px; 
+            background: rgba(0,0,0,0.8); padding: 10px 20px; 
+            border-radius: 50px; border: 1px solid var(--neon);
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 900px) {
+            .showcase { display: flex; flex-direction: column; }
+            .poster-item { height: 400px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">NEON COAST</div>
-        <div>Cart (0)</div>
+        <div class="logo">NEON POSTER CO.</div>
+        <div style="font-size: 0.8rem; letter-spacing: 2px;">COLLECTION 2026</div>
     </nav>
 
-    <div class="shop-container">
-        <div class="poster-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?q=80&w=800" alt="Neon Bikini Poster">
-                <div class="glow-overlay"></div>
-            </div>
-            <div class="details">
-                <div>
-                    <p style="text-transform: uppercase; font-size: 0.8rem; opacity: 0.6;">Limited Print</p>
-                    <h3>Cyber Orchid</h3>
-                </div>
-                <div class="price">$29</div>
-            </div>
-            <button class="buy-btn" style="width: 100%; margin-top: 15px;">ADD TO CART</button>
+    <div class="showcase">
+        <div class="poster-item large">
+            <img src="https://picsum.photos/id/103/1200/1200" alt="Bikini Poster 1">
+            <div class="tag">Cyber Summer - $45</div>
         </div>
 
-        <div class="poster-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1496115965489-21be7e6e59a0?q=80&w=800" alt="Summer Neon Poster">
-                <div class="glow-overlay"></div>
-            </div>
-            <div class="details">
-                <div>
-                    <p style="text-transform: uppercase; font-size: 0.8rem; opacity: 0.6;">Ultra Glow</p>
-                    <h3>Electric Palms</h3>
-                </div>
-                <div class="price">$35</div>
-            </div>
-            <button class="buy-btn" style="width: 100%; margin-top: 15px;">ADD TO CART</button>
+        <div class="poster-item wide">
+            <img src="https://picsum.photos/id/449/1200/600" alt="Bikini Poster 2">
+            <div class="tag">Electric Horizon - $30</div>
         </div>
 
-        <div class="poster-card">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1520923179274-13619fa72410?q=80&w=800" alt="Vivid Poster">
-                <div class="glow-overlay"></div>
-            </div>
-            <div class="details">
-                <div>
-                    <p style="text-transform: uppercase; font-size: 0.8rem; opacity: 0.6;">Series 03</p>
-                    <h3>Miami Vice Pink</h3>
-                </div>
-                <div class="price">$29</div>
-            </div>
-            <button class="buy-btn" style="width: 100%; margin-top: 15px;">ADD TO CART</button>
+        <div class="poster-item">
+            <img src="https://picsum.photos/id/111/600/600" alt="Bikini Poster 3">
+            <div class="tag">Neon Palms - $25</div>
+        </div>
+
+        <div class="poster-item">
+            <img src="https://picsum.photos/id/124/600/600" alt="Bikini Poster 4">
+            <div class="tag">Vapor Blue - $25</div>
         </div>
     </div>
 
