@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fdfdfc;
+            --text: #1a1a1a;
+            --accent: #c5a059;
+            --secondary: #666;
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; overflow: hidden; }
+
+        /* --- Entry Splash Screen --- */
+        #entry-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: var(--text);
+            color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .enter-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+        /* --- Main Content --- */
+        #main-content { opacity: 0; transition: opacity 1s ease-in; }
+
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(253, 253, 252, 0.8); backdrop-filter: blur(10px); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; text-decoration: none; color: var(--text); }
+
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; margin-bottom: 2rem; }
+
+        .work { padding: 100px 10%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 4rem; }
+        .project-card { opacity: 0; transform: translateY(40px); transition: var(--transition); margin-bottom: 2rem; }
+        .project-card.visible { opacity: 1; transform: translateY(0); }
+        .image-box { width: 100%; aspect-ratio: 4/5; background: #eee; overflow: hidden; margin-bottom: 1.5rem; }
+        .project-image { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .project-card:hover .project-image { transform: scale(1.05); }
+
+        footer { padding: 100px 10%; text-align: center; border-top: 1px solid #eee; }
+        .contact-link { font-family: 'Playfair Display', serif; font-size: 2rem; text-decoration: none; color: var(--text); }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-audio" loop>
+        <source src="Ayahnur.mp4" type="audio/mp4">
+    </audio>
+
+    <div id="entry-overlay" onclick="enterSite()">
+        <div class="enter-text">Enter Experience</div>
+    </div>
+
+    <div id="main-content">
+        <nav>
+            <a href="#" class="logo">A. Studio</a>
+        </nav>
+
+        <section class="hero">
+            <h1>Natural <br><i>Elegance</i></h1>
+            <p style="color: var(--secondary); max-width: 400px;">A digital collection inspired by human connection and the beauty of nature.</p>
+        </section>
+
+        <section class="work">
+            <div class="grid">
+                <div class="project-card">
+                    <div class="image-box"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800" class="project-image"></div>
+                    <h3>Golden Meadows</h3>
+                    <p>Photography • 2026</p>
+                </div>
+                <div class="project-card">
+                    <div class="image-box"><img src="https://images.unsplash.com/photo-1492633423870-43d1cd2775ff?auto=format&fit=crop&w=800" class="project-image"></div>
+                    <h3>Soft Petals</h3>
+                    <p>Editorial • 2025</p>
+                </div>
+                <div class="project-card">
+                    <div class="image-box"><img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=800" class="project-image"></div>
+                    <h3>Morning Dew</h3>
+                    <p>Lifestyle • 2025</p>
+                </div>
+                <div class="project-card">
+                    <div class="image-box"><img src="https://images.unsplash.com/photo-1533224442111-9658e6580556?auto=format&fit=crop&w=800" class="project-image"></div>
+                    <h3>Floral Portrait</h3>
+                    <p>Concept Art • 2024</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <a href="mailto:hello@example.com" class="contact-link">Let's Connect →</a>
+        </footer>
+    </div>
+
+    <script>
+        function enterSite() {
+            // 1. Play the audio
+            const audio = document.getElementById('bg-audio');
+            audio.play();
+            audio.volume = 0.5;
+
+            // 2. Hide the splash screen
+            document.getElementById('entry-overlay').style.transform = 'translateY(-100%)';
+            
+            // 3. Reveal content and enable scroll
+            document.getElementById('main-content').style.opacity = '1';
+            document.body.style.overflow = 'auto';
+
+            // 4. Stagger project animations
+            setTimeout(() => {
+                document.querySelectorAll('.project-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 800);
+        }
+
+        // Scroll Observer for lower cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
