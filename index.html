@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Tide | 2026 Collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* Neon Header */
+        header { 
+            height: 60vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255,0,255,0.1), transparent);
+        }
+        
+        h1 { 
+            font-family: 'Syncopate', sans-serif; 
+            font-size: clamp(2rem, 10vw, 5rem); 
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan); }
+        }
+
+        /* Neon Grid */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 30px; 
+            padding: 50px 10%; 
+        }
+
+        .card { 
+            position: relative; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.4s;
+        }
+
+        /* The Neon Glow Effect */
+        .card:hover { 
+            box-shadow: 0 0 30px var(--neon-pink); 
+            transform: translateY(-10px);
+            border-color: var(--neon-pink);
+        }
+
+        .card img { 
+            width: 100%; 
+            height: 500px; 
+            object-fit: cover; 
+            filter: saturate(1.2) contrast(1.1);
+        }
+
+        .overlay {
+            position: absolute; bottom: 0; width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+        }
+
+        .overlay h3 { font-family: 'Syncopate'; font-size: 1rem; color: var(--neon-cyan); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Neon Tide</h1>
+        <p>Electric Summer Portfolio</p>
+    </header>
+
+    <section class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?q=80&w=800" alt="Neon Bikini Model">
+            <div class="overlay"><h3>Cyber Orchid Set</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1496115965489-21be7e6e59a0?q=80&w=800" alt="Night Beach Aesthetic">
+            <div class="overlay"><h3>Electric Palms</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1521404063812-70081093153c?q=80&w=800" alt="Studio Neon">
+            <div class="overlay"><h3>Ultraviolet Glow</h3></div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800" alt="Vibrant Sunset">
+            <div class="overlay"><h3>Vaporwave One-Piece</h3></div>
+        </div>
+    </section>
+
+</body>
+</html>
