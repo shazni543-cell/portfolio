@@ -3,151 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Tide | Bikini Showcase</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
+    <title>Neon Coast | Poster Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
     <style>
-        /* 1. RESET AND THEME */
         :root {
-            --bg: #080808;
+            --bg: #020205;
             --neon-pink: #ff00ff;
-            --neon-cyan: #00ffff;
-            --white: #ffffff;
+            --neon-blue: #00d2ff;
+            --card-bg: #11111a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            background-color: var(--bg); 
-            color: var(--white); 
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+        body { background-color: var(--bg); color: white; font-family: 'Rajdhani', sans-serif; }
 
-        /* 2. HEADER & ANIMATED TEXT */
-        header {
-            height: 50vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(255,0,255,0.1) 0%, transparent 70%);
-        }
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; padding: 30px 10%; align-items: center; border-bottom: 1px solid #222; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: var(--neon-blue); text-shadow: 0 0 10px var(--neon-blue); }
 
-        h1 {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 4rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #fff;
-            text-shadow: 0 0 15px var(--neon-pink);
-            margin-bottom: 10px;
-        }
+        /* Shop Grid */
+        .shop-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding: 60px 10%; }
 
-        .subtitle {
-            font-size: 1rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--neon-cyan);
-            opacity: 0.8;
-        }
-
-        /* 3. BENTO GRID GALLERY */
-        .gallery {
-            padding: 40px 10%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            grid-auto-rows: 400px;
-            gap: 25px;
-        }
-
-        .card {
+        .poster-card { 
+            background: var(--card-bg); 
+            border-radius: 15px; 
+            padding: 15px; 
+            border: 1px solid #333; 
+            transition: 0.3s;
             position: relative;
-            background: #111;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s ease;
-            cursor: pointer;
         }
 
-        /* Hover Effects */
-        .card:hover {
-            transform: scale(1.02) translateY(-10px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+        .poster-card:hover { 
+            border-color: var(--neon-pink); 
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+            transform: translateY(-5px);
         }
 
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
+        .img-container { width: 100%; height: 400px; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; }
+
+        .details { display: flex; justify-content: space-between; align-items: center; }
+        .price { color: var(--neon-blue); font-weight: bold; font-size: 1.4rem; }
+        
+        .buy-btn { 
+            background: transparent; 
+            border: 1px solid var(--neon-pink); 
+            color: var(--neon-pink); 
+            padding: 8px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        /* Neon Image Overlay */
-        .card::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(transparent 60%, var(--bg) 95%);
-        }
+        .buy-btn:hover { background: var(--neon-pink); color: white; box-shadow: 0 0 15px var(--neon-pink); }
 
-        .label {
-            position: absolute;
-            bottom: 25px;
-            left: 25px;
-            z-index: 2;
-        }
-
-        .label h2 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--white);
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .gallery { padding: 20px 5%; }
+        /* Poster Glow Effect */
+        .glow-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <p class="subtitle">Limited Edition</p>
-        <h1>NEON TIDE</h1>
-    </header>
+    <nav>
+        <div class="logo">NEON COAST</div>
+        <div>Cart (0)</div>
+    </nav>
 
-    <section class="gallery">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80" alt="Neon Pink Bikini">
-            <div class="label"><h2>Cyber Sunset</h2></div>
+    <div class="shop-container">
+        <div class="poster-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?q=80&w=800" alt="Neon Bikini Poster">
+                <div class="glow-overlay"></div>
+            </div>
+            <div class="details">
+                <div>
+                    <p style="text-transform: uppercase; font-size: 0.8rem; opacity: 0.6;">Limited Print</p>
+                    <h3>Cyber Orchid</h3>
+                </div>
+                <div class="price">$29</div>
+            </div>
+            <button class="buy-btn" style="width: 100%; margin-top: 15px;">ADD TO CART</button>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1542514125-998851722880?auto=format&fit=crop&w=800&q=80" alt="Cyan Bikini">
-            <div class="label"><h2>Electric Azure</h2></div>
+        <div class="poster-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1496115965489-21be7e6e59a0?q=80&w=800" alt="Summer Neon Poster">
+                <div class="glow-overlay"></div>
+            </div>
+            <div class="details">
+                <div>
+                    <p style="text-transform: uppercase; font-size: 0.8rem; opacity: 0.6;">Ultra Glow</p>
+                    <h3>Electric Palms</h3>
+                </div>
+                <div class="price">$35</div>
+            </div>
+            <button class="buy-btn" style="width: 100%; margin-top: 15px;">ADD TO CART</button>
         </div>
 
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1520923179274-13619fa72410?auto=format&fit=crop&w=800&q=80" alt="Neon Green Bikini">
-            <div class="label"><h2>Acid Lime</h2></div>
+        <div class="poster-card">
+            <div class="img-container">
+                <img src="https://images.unsplash.com/photo-1520923179274-13619fa72410?q=80&w=800" alt="Vivid Poster">
+                <div class="glow-overlay"></div>
+            </div>
+            <div class="details">
+                <div>
+                    <p style="text-transform: uppercase; font-size: 0.8rem; opacity: 0.6;">Series 03</p>
+                    <h3>Miami Vice Pink</h3>
+                </div>
+                <div class="price">$29</div>
+            </div>
+            <button class="buy-btn" style="width: 100%; margin-top: 15px;">ADD TO CART</button>
         </div>
-
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Miami Night">
-            <div class="label"><h2>Miami Glo</h2></div>
-        </div>
-    </section>
-
-    <footer style="text-align: center; padding: 50px; opacity: 0.3; font-size: 0.8rem; letter-spacing: 2px;">
-        © 2026 NEON TIDE SWIMWEAR
-    </footer>
+    </div>
 
 </body>
 </html>
